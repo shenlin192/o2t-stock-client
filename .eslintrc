@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint", // enable class function as property synthese
+  "parserOptions":{
+    "ecmaVersion": 2017
+  },
+  "env":{
+    "node": true,
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-console": ["off"],
+    "no-trailing-spaces": ["off"],
+    "spaced-comment": ["off"],
+    "react/prefer-stateless-function": ["off"]
+  }
+}
