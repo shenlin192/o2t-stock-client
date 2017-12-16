@@ -1,0 +1,33 @@
+$border-color: #CECECE;
+
+.ReactTable{
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    border: 2px solid #CECECE;;
+    .pagination-bottom{
+        display: none;
+    }
+
+    .rt-thead.-header{
+        display: none;
+    }
+    .rt-tbody {
+        .rt-td {
+            border-right: 1px solid $border-color;
+            div[contenteditable='true']{
+                &:focus{
+                    outline: 1px solid green;
+                }
+            }
+        }
+        .rt-tr-group {
+            border-bottom: 1px solid $border-color;
+            &:nth-child(8){
+                height: 20vh;
+                min-height: 200px;
+            }
+        }
+    }
+
+}
