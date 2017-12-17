@@ -1,0 +1,16 @@
+// over write legend style
+.rv-xy-plot{
+    .rv-discrete-color-legend{
+        margin-top: -10px;
+        .rv-discrete-color-legend-item{
+            display: inline-flex;
+        }
+        .rv-discrete-color-legend-item__color{
+            width: 30px;
+        }
+        .rv-discrete-color-legend-item__title{
+            margin-top: -5px;
+            margin-left: 1px;
+        }
+    }
+}

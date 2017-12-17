@@ -1,4 +1,28 @@
 .App {
   text-align: center;
-}
+  position: relative; }
 
+.chart-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 13vw;
+  margin: auto;
+  z-index: 1;
+  width: 80vw;
+  max-width: 1000px;
+  height: 300px;
+  background: #FFFFFF;
+  padding: 10px 10px 40px;
+  border: 1px solid #CECECE; }
+
+.table-container {
+  width: 95vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10vw;
+  margin: auto; }
+  @media (min-width: 1280px) {
+    .table-container {
+      width: 89vw; } }

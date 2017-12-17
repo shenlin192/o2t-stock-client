@@ -18,12 +18,12 @@ export function columnsMaker(colNum, cellMaker) {
 
   const columns = baseArray.map(e => (
     {
-      Header: `Value${e}`, accessor: `value${e}.value`, id: `value${e}`, Cell: cellMaker, width: '5vw', minWidth: 30,
+      Header: `Value${e}`, accessor: `value${e}.value`, id: `value${e}`, Cell: cellMaker, index: e,
     }
   ));
 
   columns.unshift({
-    Header: 'Title', accessor: 'title', width: '5vw', minWidth: 30,
+    Header: 'Title', accessor: 'title',
   });
 
   return columns;

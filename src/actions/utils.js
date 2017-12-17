@@ -110,13 +110,13 @@ export function dataTransform(result, colNum, rowNum, modifyRecord) {
   // make chart data
   const cac40Chart = newResult.map((e, i) => (
     {
-      x: i + 1,
+      x: e.index,
       y: Number(parseFloat(e.stocks.CAC40).toFixed(2)),
     }));
 
   const nasdaqChart = newResult.map((e, i) => (
     {
-      x: i + 1,
+      x: e.index,
       y: Number(parseFloat(e.stocks.NASDAQ).toFixed(2)),
     }));
 

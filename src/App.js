@@ -27,8 +27,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <StockChart />
-        <StockTable />
+        <div className="chart-container">
+          <StockChart />
+        </div>
+        <div className="table-container">
+          <StockTable />
+        </div>
+
       </div>
     );
   }

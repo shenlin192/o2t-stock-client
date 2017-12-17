@@ -1,9 +1,8 @@
 $border-color: #CECECE;
+$selected-color: green;
 
 .ReactTable{
-    width: 80vw;
-    margin: auto;
-    text-align: center;
+    text-align: right;
     border: 2px solid $border-color;
     .pagination-bottom{
         display: none;
@@ -11,29 +10,69 @@ $border-color: #CECECE;
 
     .rt-thead.-header{
         display: none;
+        min-width: 0!important;
     }
     .rt-tbody {
-        .rt-td {
-            border-right: 1px solid $border-color;
+        @media (min-width: 1280px) {
+            min-width: 0!important;
         }
         .rt-tr-group {
             border-bottom: 1px solid $border-color;
-            &:nth-child(8){
-                height: 20vh;
-                min-height: 200px;
+            font-size: 14px;
+
+            @media (min-width: 1280px) {
+                min-width: 0;
             }
-            &:nth-child(9),&:nth-child(10){
-                .rt-td{
-                    padding: 0;
-                    line-height: 34px;
-                    div[contenteditable='true']{
-                        &:focus{
-                            border: 2px solid green;
-                        }
+
+            &:nth-child(8){
+                height: 250px
+            }
+
+            .rt-td {
+                padding: 3px;
+                line-height: 20px;
+                border-right: 1px solid $border-color;
+                width: 4vw!important;
+
+                // title style
+                &:first-child{
+                    font-weight: 600;
+                    width: 8vw!important;
+                    text-align: left;
+                }
+
+                // editable row styles
+                div[contenteditable='true']{
+                    &:focus{
+                        outline: 3px solid $selected-color;
                     }
                 }
             }
         }
+
+        // selected border styles
+        .selected-col{
+            position: relative;
+            &:before{
+                content: " ";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100px;
+                height: 2px;
+                background: $selected-color;
+            }
+        }
+
+        .selected-row::before{
+            content: " ";
+            position: absolute;
+            width: 2px;
+            height: 25px;
+            left: -2px;
+            background: $selected-color;
+        }
+
     }
 
 }

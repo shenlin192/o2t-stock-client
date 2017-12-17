@@ -1,21 +1,47 @@
 .ReactTable {
-  width: 80vw;
-  margin: auto;
-  text-align: center;
+  text-align: right;
   border: 2px solid #CECECE; }
   .ReactTable .pagination-bottom {
     display: none; }
   .ReactTable .rt-thead.-header {
-    display: none; }
-  .ReactTable .rt-tbody .rt-td {
-    border-right: 1px solid #CECECE; }
+    display: none;
+    min-width: 0 !important; }
+  @media (min-width: 1280px) {
+    .ReactTable .rt-tbody {
+      min-width: 0 !important; } }
   .ReactTable .rt-tbody .rt-tr-group {
-    border-bottom: 1px solid #CECECE; }
+    border-bottom: 1px solid #CECECE;
+    font-size: 14px; }
+    @media (min-width: 1280px) {
+      .ReactTable .rt-tbody .rt-tr-group {
+        min-width: 0; } }
     .ReactTable .rt-tbody .rt-tr-group:nth-child(8) {
-      height: 20vh;
-      min-height: 200px; }
-    .ReactTable .rt-tbody .rt-tr-group:nth-child(9) .rt-td, .ReactTable .rt-tbody .rt-tr-group:nth-child(10) .rt-td {
-      padding: 0;
-      line-height: 34px; }
-      .ReactTable .rt-tbody .rt-tr-group:nth-child(9) .rt-td div[contenteditable='true']:focus, .ReactTable .rt-tbody .rt-tr-group:nth-child(10) .rt-td div[contenteditable='true']:focus {
-        border: 2px solid green; }
+      height: 250px; }
+    .ReactTable .rt-tbody .rt-tr-group .rt-td {
+      padding: 3px;
+      line-height: 20px;
+      border-right: 1px solid #CECECE;
+      width: 4vw !important; }
+      .ReactTable .rt-tbody .rt-tr-group .rt-td:first-child {
+        font-weight: 600;
+        width: 8vw !important;
+        text-align: left; }
+      .ReactTable .rt-tbody .rt-tr-group .rt-td div[contenteditable='true']:focus {
+        outline: 3px solid green; }
+  .ReactTable .rt-tbody .selected-col {
+    position: relative; }
+    .ReactTable .rt-tbody .selected-col:before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 2px;
+      background: green; }
+  .ReactTable .rt-tbody .selected-row::before {
+    content: " ";
+    position: absolute;
+    width: 2px;
+    height: 25px;
+    left: -2px;
+    background: green; }

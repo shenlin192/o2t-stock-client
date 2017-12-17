@@ -1,7 +1,7 @@
 /**
  * Created by shenlin on 15/12/2017.
  */
-import { emptyTableMaker, tableDataMaker } from '../actions/utils';
+import { emptyTableMaker } from '../actions/utils';
 import { colNum } from '../global';
 
 const initialTable = emptyTableMaker(colNum, 1);
@@ -46,14 +46,11 @@ export default function reducer(state = {
         tableData: action.payload.tableData,
       };
     }
-    case 'TEST': {
+    case 'FORCE_UPDATE': {
       return {
         ...state,
-        tableData: tableDataMaker(
-          colNum, 10,
-          [{ index: 1, value: 1 }, { index: 10, value: 5 }],
-          [{ index: 1, value: 3 }, { index: 10, value: 4 }],
-        ),
+        chartData: action.payload.chartData,
+        tableData: action.payload.tableData,
       };
     }
     case 'MODIFY_RECORD': {
