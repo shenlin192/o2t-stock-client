@@ -17,6 +17,7 @@
     "no-console": ["off"],
     "no-trailing-spaces": ["off"],
     "spaced-comment": ["off"],
-    "react/prefer-stateless-function": ["off"]
+    "react/prefer-stateless-function": ["off"],
+    "react/prop-types": ["off"]
   }
 }

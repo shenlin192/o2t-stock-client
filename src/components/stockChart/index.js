@@ -7,17 +7,17 @@ import { XYPlot, HorizontalGridLines, XAxis, YAxis, LineSeries, DiscreteColorLeg
 import { connect } from 'react-redux';
 
 class StockChart extends Component {
-  static propTypes = {
-    cac40: PropTypes.arrayOf(PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    })).isRequired,
-
-    nasdaq: PropTypes.arrayOf(PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    })).isRequired,
-  };
+  // static propTypes = {
+  //   cac40: PropTypes.arrayOf(PropTypes.shape({
+  //     x: PropTypes.number.isRequired,
+  //     y: PropTypes.number.isRequired,
+  //   })).isRequired,
+  //
+  //   nasdaq: PropTypes.arrayOf(PropTypes.shape({
+  //     x: PropTypes.number.isRequired,
+  //     y: PropTypes.number.isRequired,
+  //   })).isRequired,
+  // };
 
   render() {
     return (
@@ -28,11 +28,11 @@ class StockChart extends Component {
           <YAxis style={{ line: { stroke: 'none' } }} />
 
           <LineSeries
-            data={this.props.cac40}
+            data={this.props.chartData.cac40Chart}
             style={{ stroke: '#629fd4' }}
           />
           <LineSeries
-            data={this.props.nasdaq}
+            data={this.props.chartData.nasdaqChart}
             style={{ stroke: '#eb7d3c' }}
           />
 
@@ -51,6 +51,7 @@ class StockChart extends Component {
 }
 
 export default connect(store => ({
-  cac40: store.stock.cac40,
-  nasdaq: store.stock.nasdaq,
+  // cac40: store.stock.cac40,
+  // nasdaq: store.stock.nasdaq,
+  chartData: store.stock.chartData,
 }))(StockChart);

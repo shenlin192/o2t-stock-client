@@ -5,17 +5,20 @@
 /**
  * @returns array in the following shape [
  * { Header: 'Title', accessor: 'title' },
- * { Header: 'Value0', accessor: 'value0' },
+ * { Header: 'Value0', accessor: 'value0.value' },
  * ...
- * { Header: 'ValueN', accessor: 'valueN' },
+ * { Header: 'ValueN', accessor: 'valueN.value' },
  * ]
  */
+
+//TODO change value form to {value0: {index:1, value: 1}}
+
 export function columnsMaker(colNum, cellMaker) {
   const baseArray = [...Array(colNum).keys()];
 
   const columns = baseArray.map(e => (
     {
-      Header: `Value${e}`, accessor: `value${e}`, Cell: cellMaker, width: '5vw', minWidth: 30,
+      Header: `Value${e}`, accessor: `value${e}.value`, id: `value${e}`, Cell: cellMaker, width: '5vw', minWidth: 30,
     }
   ));
 
@@ -25,22 +28,3 @@ export function columnsMaker(colNum, cellMaker) {
 
   return columns;
 }
-
-
-/**
- * @returns array in the following shape [
- * { title: null, value0: null, ..., valueN: null},
- * ...
- * { title: null, value0: null, ..., valueN: null},
- * ]
- */
-export function dataMaker(colNum, rowNum) {
-  const oneRow = {
-    title: null,
-  };
-  for (let i = 0; i < colNum; i += 1) {
-    oneRow[`value${i}`] = null;
-  }
-  return Array(rowNum).fill(oneRow);
-}
-

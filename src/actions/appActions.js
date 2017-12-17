@@ -3,37 +3,24 @@
  */
 import axios from 'axios';
 import morkResult from './mork';
+import { dataTransform } from './utils';
+import { colNum, rowNum } from '../global';
 
-export function fetchStock() {
+export function fetchStock(modifyRecord, pauseTableUpdate) {
   return function (dispatch) {
     dispatch({ type: 'FETCH_STOCK' });
 
     //mork
-    const payload = dataTransform(morkResult);
+    const payload = dataTransform(morkResult, colNum, rowNum, modifyRecord, pauseTableUpdate);
     dispatch({ type: 'FETCH_STOCK_FULFILLED', payload });
-
-    // axios.get('http://localhost:8000/?count=20')
+    //
+    // axios.get(`http://localhost:8000/?count=${colNum}`)
     //   .then((response) => {
-    //     const payload = dataTransform(response.data);
+    //     const payload = dataTransform(response.data, colNum, rowNum);
     //     dispatch({ type: 'FETCH_STOCK_FULFILLED', payload });
     //   })
     //   .catch((err) => {
     //     dispatch({ type: 'FETCH_STOCK_REJECTED', payload: err });
     //   });
   };
-}
-
-function dataTransform(result) {
-  const stock = result.map(e => e.stocks);
-  const cac40Num = stock.map(e => Number(parseFloat(e.CAC40).toFixed(2)));
-  const nasdaqNum = stock.map(e => Number(parseFloat(e.NASDAQ).toFixed(2)));
-
-  const cac40 = cac40Num.map((e, i) => ({ x: i + 1, y: e }));
-  const nasdaq = nasdaqNum.map((e, i) => ({ x: i + 1, y: e }));
-
-  const payload = {
-    cac40,
-    nasdaq,
-  };
-  return payload;
 }
