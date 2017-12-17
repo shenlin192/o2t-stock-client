@@ -9,10 +9,13 @@
     display: none; }
   .ReactTable .rt-tbody .rt-td {
     border-right: 1px solid #CECECE; }
-    .ReactTable .rt-tbody .rt-td div[contenteditable='true']:focus {
-      outline: 1px solid green; }
   .ReactTable .rt-tbody .rt-tr-group {
     border-bottom: 1px solid #CECECE; }
     .ReactTable .rt-tbody .rt-tr-group:nth-child(8) {
       height: 20vh;
       min-height: 200px; }
+    .ReactTable .rt-tbody .rt-tr-group:nth-child(9) .rt-td, .ReactTable .rt-tbody .rt-tr-group:nth-child(10) .rt-td {
+      padding: 0;
+      line-height: 34px; }
+      .ReactTable .rt-tbody .rt-tr-group:nth-child(9) .rt-td div[contenteditable='true']:focus, .ReactTable .rt-tbody .rt-tr-group:nth-child(10) .rt-td div[contenteditable='true']:focus {
+        border: 2px solid green; }

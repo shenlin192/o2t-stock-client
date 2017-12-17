@@ -15,7 +15,11 @@ export default function reducer(state = {
     nasdaq: [{ x: 1, y: 1 }],
   },
   tableData: initialTable,
-  modifyRecord: [],
+  modifyRecord: [{
+    index: 0,
+    type: 'cac40',
+    value: 0,
+  }],
   pauseTableUpdate: false,
 }, action) {
   switch (action.type) {

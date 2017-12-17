@@ -4,7 +4,7 @@ $border-color: #CECECE;
     width: 80vw;
     margin: auto;
     text-align: center;
-    border: 2px solid #CECECE;;
+    border: 2px solid $border-color;
     .pagination-bottom{
         display: none;
     }
@@ -15,17 +15,23 @@ $border-color: #CECECE;
     .rt-tbody {
         .rt-td {
             border-right: 1px solid $border-color;
-            div[contenteditable='true']{
-                &:focus{
-                    outline: 1px solid green;
-                }
-            }
         }
         .rt-tr-group {
             border-bottom: 1px solid $border-color;
             &:nth-child(8){
                 height: 20vh;
                 min-height: 200px;
+            }
+            &:nth-child(9),&:nth-child(10){
+                .rt-td{
+                    padding: 0;
+                    line-height: 34px;
+                    div[contenteditable='true']{
+                        &:focus{
+                            border: 2px solid green;
+                        }
+                    }
+                }
             }
         }
     }

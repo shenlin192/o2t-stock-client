@@ -21,7 +21,7 @@ class StockTable extends Component {
     if (cellInfo.index > 7) {
       return (
         <div
-          style={{ height: '20px' }}
+          style={{ height: '34px' }}
           contentEditable
           suppressContentEditableWarning
           onFocus={() => {

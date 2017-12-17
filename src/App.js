@@ -16,12 +16,12 @@ class App extends Component {
 
   componentWillMount() {
     //get initial data
-    this.props.dispatch(fetchStock());
+    this.props.dispatch(fetchStock(this.props.modifyRecord));
 
     // update every second
-    // setInterval(() => {
-    //   this.props.dispatch(fetchStock(this.props.modifyRecord));
-    // }, 1000);
+    setInterval(() => {
+      this.props.dispatch(fetchStock(this.props.modifyRecord));
+    }, 1000);
   }
 
   render() {

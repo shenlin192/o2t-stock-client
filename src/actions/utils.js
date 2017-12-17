@@ -55,15 +55,51 @@ export function tableDataMaker(colNum, rowNum, cac40, nasdaq) {
 }
 
 
+// modifyRecord = [
+//   {index:1, type:'cac40', value:1},
+//   {index:1, type:'cac40', value:3},
+//   {index:1, type:'cac40', value:4},
+//   {index:1, type:'nasdaq', value:1}
+//   {index:1, type:'nasdaq', value:2}
+// ]
+
+
+function keepUserModification(result, modifyRecord) {
+  const newResult = result.map((e) => {
+    //find out all relative records
+    const relativeRecords = modifyRecord.filter(record => record.index === e.index);
+
+    if (relativeRecords.length) {
+      const cac40Records = relativeRecords.filter(record => record.type === 'cac40');
+      const nasdaqRecords = relativeRecords.filter(record => record.type === 'nasdaq');
+      // update by last record value
+      if (cac40Records.length) {
+        e.stocks.CAC40 = cac40Records[cac40Records.length - 1].value;
+      }
+
+      if (nasdaqRecords.length) {
+        e.stocks.NASDAQ = nasdaqRecords[nasdaqRecords.length - 1].value;
+      }
+    }
+    return e;
+  });
+  return newResult;
+}
+
+
+/**
+ *
+ */
 export function dataTransform(result, colNum, rowNum, modifyRecord) {
+  const newResult = keepUserModification(result, modifyRecord);
   // make table data
-  const cac40Table = result.map(e => (
+  const cac40Table = newResult.map(e => (
     {
       index: e.index,
       value: Number(parseFloat(e.stocks.CAC40).toFixed(2)),
     }));
 
-  const nasdaqTable = result.map(e => (
+  const nasdaqTable = newResult.map(e => (
     {
       index: e.index,
       value: Number(parseFloat(e.stocks.NASDAQ).toFixed(2)),
@@ -72,13 +108,13 @@ export function dataTransform(result, colNum, rowNum, modifyRecord) {
   const tableData = tableDataMaker(colNum, rowNum, cac40Table, nasdaqTable);
 
   // make chart data
-  const cac40Chart = result.map((e, i) => (
+  const cac40Chart = newResult.map((e, i) => (
     {
       x: i + 1,
       y: Number(parseFloat(e.stocks.CAC40).toFixed(2)),
     }));
 
-  const nasdaqChart = result.map((e, i) => (
+  const nasdaqChart = newResult.map((e, i) => (
     {
       x: i + 1,
       y: Number(parseFloat(e.stocks.NASDAQ).toFixed(2)),
