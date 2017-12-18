@@ -16,8 +16,6 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": ["off"],
     "no-trailing-spaces": ["off"],
-    "spaced-comment": ["off"],
-    "react/prefer-stateless-function": ["off"],
-    "react/prop-types": ["off"]
+    "spaced-comment": ["off"]
   }
 }

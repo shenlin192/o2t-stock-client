@@ -11,15 +11,11 @@ export default function reducer(state = {
   fetched: false,
   error: null,
   chartData: {
-    cac40: [{ x: 1, y: 1 }],
-    nasdaq: [{ x: 1, y: 1 }],
+    cac40Chart: [{ x: 1, y: 1 }],
+    nasdaqChart: [{ x: 1, y: 1 }],
   },
   tableData: initialTable,
-  modifyRecord: [{
-    index: 0,
-    type: 'cac40',
-    value: 0,
-  }],
+  modifyRecord: [],
   pauseTableUpdate: false,
 }, action) {
   switch (action.type) {
@@ -65,6 +61,10 @@ export default function reducer(state = {
         pauseTableUpdate: !state.pauseTableUpdate,
       };
     }
+    default: {
+      return {
+        ...state,
+      };
+    }
   }
-  return state;
 }

@@ -12,6 +12,11 @@ import '../node_modules/react-vis/dist/style.css';
 class App extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    modifyRecord: PropTypes.arrayOf(PropTypes.shape({
+      index: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    })).isRequired,
   };
 
   componentWillMount() {

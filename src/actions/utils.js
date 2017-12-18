@@ -2,6 +2,46 @@
  * Created by shenlin on 16/12/2017.
  */
 
+
+/**
+ * @param data
+ * @param index
+ * @param value
+ * @returns {*|Object|Array}
+ * select a chart data by index and update its value
+ */
+export function forceUpdateChart(data, index, value) {
+  return data.map((e) => {
+    if (e.x === index) {
+      return {
+        x: index,
+        y: value,
+      };
+    }
+    return e;
+  });
+}
+
+/**
+ * @param data
+ * @param index
+ * @param value
+ * @returns {{}}
+ * select a table data by index and update its value
+ */
+export function forceUpdateTable(data, index, value) {
+  // deep copy the data obj to keep pure function
+  const temp = JSON.parse(JSON.stringify(data));
+  const keys = Object.keys(temp);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    if (temp[keys[i]].index === index) {
+      temp[keys[i]].value = value;
+    }
+  }
+  return temp;
+}
+
 /**
  * @returns array in the following shape [
  * { title: null, value0: {index: null, value: null}, ..., valueN:  {index: null, value: null}},
@@ -50,28 +90,26 @@ export function tableDataMaker(colNum, rowNum, cac40, nasdaq) {
   }
   table.push(cac40Row);
   table.push(nasdaqRow);
-  console.log(table);
   return table;
 }
 
 
-// modifyRecord = [
-//   {index:1, type:'cac40', value:1},
-//   {index:1, type:'cac40', value:3},
-//   {index:1, type:'cac40', value:4},
-//   {index:1, type:'nasdaq', value:1}
-//   {index:1, type:'nasdaq', value:2}
-// ]
+/**
+ * @returns obj
+ * Update the fetched result with user modification
+ */
+export function keepUserModification(result, modifyRecord) {
+  // deep copy the data result obj to keep pure function
+  const newResult = JSON.parse(JSON.stringify(result));
 
-
-function keepUserModification(result, modifyRecord) {
-  const newResult = result.map((e) => {
-    //find out all relative records
+  return newResult.map((e) => {
+    // find out all relative records
     const relativeRecords = modifyRecord.filter(record => record.index === e.index);
 
     if (relativeRecords.length) {
       const cac40Records = relativeRecords.filter(record => record.type === 'cac40');
       const nasdaqRecords = relativeRecords.filter(record => record.type === 'nasdaq');
+
       // update by last record value
       if (cac40Records.length) {
         e.stocks.CAC40 = cac40Records[cac40Records.length - 1].value;
@@ -83,15 +121,25 @@ function keepUserModification(result, modifyRecord) {
     }
     return e;
   });
-  return newResult;
 }
 
 
 /**
- *
+ * @returns obj in the following shape
+ * {
+ * chartData:{
+ *  cac40Chart: [{x:index,y:value}]
+ *  nasdaqChart: [{x:index,y:value}]
+ * }
+ * tableData{
+ *  [{ title: null, value0: {index: null, value: null}, ..., valueN:  {index: null, value: null}}]
+ * }
+ * }
  */
 export function dataTransform(result, colNum, rowNum, modifyRecord) {
+  // update by user modification
   const newResult = keepUserModification(result, modifyRecord);
+
   // make table data
   const cac40Table = newResult.map(e => (
     {

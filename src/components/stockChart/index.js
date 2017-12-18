@@ -3,22 +3,23 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlexibleWidthXYPlot, XYPlot, HorizontalGridLines, XAxis, YAxis, LineSeries, DiscreteColorLegend } from 'react-vis';
+import { FlexibleWidthXYPlot, HorizontalGridLines, XAxis, YAxis, LineSeries, DiscreteColorLegend } from 'react-vis';
 import { connect } from 'react-redux';
 import './styles.css';
 
 class StockChart extends Component {
-  // static propTypes = {
-  //   cac40: PropTypes.arrayOf(PropTypes.shape({
-  //     x: PropTypes.number.isRequired,
-  //     y: PropTypes.number.isRequired,
-  //   })).isRequired,
-  //
-  //   nasdaq: PropTypes.arrayOf(PropTypes.shape({
-  //     x: PropTypes.number.isRequired,
-  //     y: PropTypes.number.isRequired,
-  //   })).isRequired,
-  // };
+  static propTypes = {
+    chartData: PropTypes.shape({
+      cac40Chart: PropTypes.arrayOf(PropTypes.shape({
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+      })).isRequired,
+      nasdaqChart: PropTypes.arrayOf(PropTypes.shape({
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+      })).isRequired,
+    }).isRequired,
+  };
 
   render() {
     return (

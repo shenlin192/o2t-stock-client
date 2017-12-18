@@ -10,9 +10,6 @@
  * { Header: 'ValueN', accessor: 'valueN.value' },
  * ]
  */
-
-//TODO change value form to {value0: {index:1, value: 1}}
-
 export function columnsMaker(colNum, cellMaker) {
   const baseArray = [...Array(colNum).keys()];
 
