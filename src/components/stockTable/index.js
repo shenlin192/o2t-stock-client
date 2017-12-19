@@ -37,6 +37,7 @@ class StockTable extends Component {
   }
 
   handleBlur(e, cellInfo) {
+    this.props.dispatch(pauseTableUpdate());
     e.target.parentNode.parentNode.classList.remove('selected-row');
     document.getElementsByClassName('rt-tr -odd')[0].childNodes[cellInfo.column.index + 1].classList.remove('selected-col');
     this.handleChange(e, cellInfo);
@@ -50,7 +51,6 @@ class StockTable extends Component {
   }
 
   handleChange(e, cellInfo) {
-    this.props.dispatch(pauseTableUpdate());
     const cell = this.props.tableData[cellInfo.index][cellInfo.column.id];
 
     let newValue = Number(e.target.innerHTML);
