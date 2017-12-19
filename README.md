@@ -114,4 +114,23 @@ The best is a graphical library which is natively implemented via React.
 After comparing the popularity and quality of documents, I've chosen `react-vis`
  
 ### File structure
+The files in this project is organized in a classical React-Redux way like:
+
+````
+\src
+    \actions
+    \components
+    \reducers
+    \test
+````
+Because this project is not complicated and there are no deeply nested component.
+
+
+For really complicated projects, it's better organize files as `node_modules`,
+every components should have everything it needs to work on its own, 
+such as its own styles, images, translations, set of actions as well as unit or integration tests.
+
+It's well described in [this article](https://medium.com/@alexmngn/how-to-better-organize-your-react-applications-2fd3ea1920f1)
+
+
 
