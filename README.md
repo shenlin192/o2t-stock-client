@@ -89,7 +89,7 @@ Generally, there are 2 ways to achieve this goal:
        }
 ````
 
-- Use D3 to do all the math but leave DOM manipulate to React:
+- Use D3 to do all the math but leave DOM manipulate to React by defining SVG tags:
 ````jsx harmony
  return (
   <svg>
@@ -111,10 +111,14 @@ The second approach force you to write some low level naive svg code.
 **None** of them are perfect.
  
 The best is a graphical library which is natively implemented via React. 
-After comparing the popularity and quality of documents, I've chosen `react-vis`
+After comparing the popularity and quality of documents, I've chosen `react-vis`.
+
+Similar to `D3.js`, `react-vis` uses HTML, SVG, and CSS.
+It's simple, flexible and easy-to-use and most importantly, it's already integrated with React.
+ 
  
 ### File structure
-The files in this project is organized in a classical React-Redux way like:
+The files in this project is organized in a classical `React-Redux application` way like:
 
 ````
 \src
@@ -126,8 +130,8 @@ The files in this project is organized in a classical React-Redux way like:
 Because this project is not complicated and there are no deeply nested component.
 
 
-For really complicated projects, it's better organize files as `node_modules`,
-every components should have everything it needs to work on its own, 
+For really complicated projects, it's better to organize files as `node_modules` does. Which means
+each component, scene or service has everything it needs to work on its own, 
 such as its own styles, images, translations, set of actions as well as unit or integration tests.
 
 It's well described in [this article](https://medium.com/@alexmngn/how-to-better-organize-your-react-applications-2fd3ea1920f1)
