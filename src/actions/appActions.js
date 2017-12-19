@@ -13,10 +13,8 @@ export function fetchStock(modifyRecord) {
     // mock
     // const payload = dataTransform(morkResult, colNum, rowNum, modifyRecord);
     // dispatch({ type: 'FETCH_STOCK_FULFILLED', payload });
-
-    axios.get(`http://localhost:8000/?count=${colNum}`)
+    return axios.get(`http://localhost:8000/?count=${colNum}`)
       .then((response) => {
-        console.log(modifyRecord);
         const payload = dataTransform(response.data, colNum, rowNum, modifyRecord);
         dispatch({ type: 'FETCH_STOCK_FULFILLED', payload });
       })

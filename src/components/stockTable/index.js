@@ -31,14 +31,26 @@ class StockTable extends Component {
   constructor() {
     super();
     this.renderEditable = this.renderEditable.bind(this);
-    this.handleOnBlur = this.handleOnBlur.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleOnBlur(e, cellInfo) {
+  handleBlur(e, cellInfo) {
     e.target.parentNode.parentNode.classList.remove('selected-row');
     document.getElementsByClassName('rt-tr -odd')[0].childNodes[cellInfo.column.index + 1].classList.remove('selected-col');
-    this.props.dispatch(pauseTableUpdate());
+    this.handleChange(e, cellInfo);
+  }
 
+  handleKeyPress(e, cellInfo) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.handleChange(e, cellInfo);
+    }
+  }
+
+  handleChange(e, cellInfo) {
+    this.props.dispatch(pauseTableUpdate());
     const cell = this.props.tableData[cellInfo.index][cellInfo.column.id];
 
     let newValue = Number(e.target.innerHTML);
@@ -72,7 +84,10 @@ class StockTable extends Component {
             this.props.dispatch(pauseTableUpdate());
           }}
           onBlur={(e) => {
-            this.handleOnBlur(e, cellInfo);
+            this.handleBlur(e, cellInfo);
+          }}
+          onKeyPress={(e) => {
+            this.handleKeyPress(e, cellInfo);
           }}
           dangerouslySetInnerHTML={{
             __html: this.props.tableData[cellInfo.index][cellInfo.column.id].value,

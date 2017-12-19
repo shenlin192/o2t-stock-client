@@ -61,10 +61,8 @@ export default function reducer(state = {
         pauseTableUpdate: !state.pauseTableUpdate,
       };
     }
-    default: {
-      return {
-        ...state,
-      };
-    }
+    default:
+      return state;
   }
 }
+
