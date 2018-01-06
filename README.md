@@ -89,7 +89,7 @@ Generally, there are 2 ways to achieve this goal:
        }
 ````
 
-- Use D3 to do all the math but leave DOM manipulate to React by defining SVG tags:
+- Use D3 to do all the math but leave DOM manipulation to React by defining SVG tags:
 ````jsx harmony
  return (
   <svg>
